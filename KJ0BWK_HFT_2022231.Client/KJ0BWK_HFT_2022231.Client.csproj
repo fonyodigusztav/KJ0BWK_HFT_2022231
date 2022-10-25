@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="ConsoleMenu-simple" Version="2.4.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\KJ0BWK_HFT_2022231.Logic\KJ0BWK_HFT_2022231.Logic.csproj" />
     <ProjectReference Include="..\KJ0BWK_HFT_2022231.Models\KJ0BWK_HFT_2022231.Models.csproj" />
     <ProjectReference Include="..\KJ0BWK_HFT_2022231.Repository\KJ0BWK_HFT_2022231.Repository.csproj" />
