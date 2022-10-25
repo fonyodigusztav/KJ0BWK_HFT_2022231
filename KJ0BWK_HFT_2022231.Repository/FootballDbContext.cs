@@ -17,5 +17,14 @@ namespace KJ0BWK_HFT_2022231.Repository
         {
             this.Database.EnsureCreated();
         }
+        protected override void OnConfiguring(DbContextOptionsBuilder builder)
+        {
+            if (!builder.IsConfigured)
+            {
+                builder
+                    .UseInMemoryDatabase("football")
+                    .UseLazyLoadingProxies();            
+            }
+        }
     }
 }

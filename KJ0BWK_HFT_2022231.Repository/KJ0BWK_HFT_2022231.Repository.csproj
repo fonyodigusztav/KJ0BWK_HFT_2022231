@@ -5,6 +5,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="football.mdf" />
+    <None Remove="football_log.ldf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="football.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="football_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\KJ0BWK_HFT_2022231.Models\KJ0BWK_HFT_2022231.Models.csproj" />
   </ItemGroup>
 	
