@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KJ0BWK_HFT_2022231.Repository
 {
-    internal class FootballDbContext: DbContext
+    public class FootballDbContext: DbContext
     {
         public DbSet<Player> Players { get; set; }
         public DbSet<Club> Clubs { get; set; }
