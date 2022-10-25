@@ -45,7 +45,8 @@ namespace KJ0BWK_HFT_2022231.Repository
             {
                 new Player("1#Cristiano Ronaldo#36#ST#90#4"),
                 new Player("2#Raheem Sterling#24#RW#89#5"),
-                new Player("3#Gabriel Jesus#30#ST#85#6")
+                new Player("3#Gabriel Jesus#30#ST#85#6"),
+                new Player("4#Harry Maguire#26#CB#60#4")
             });
 
             modelBuilder.Entity<Club>().HasData(new Club[]
