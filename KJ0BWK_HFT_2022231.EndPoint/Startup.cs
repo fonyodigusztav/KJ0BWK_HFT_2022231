@@ -45,8 +45,7 @@ namespace KJ0BWK_HFT_2022231.EndPoint
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Title = "KJ0BWK_HFT_2022231.Endpoint",
-                    Version = "v1"
-                });
+                    Version = "v1" });
             });
 
         }
@@ -59,7 +58,8 @@ namespace KJ0BWK_HFT_2022231.EndPoint
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint
-                ("/swagger/v1/swagger.json", "KJ0BWK_HFT_2022231.Endpoint"));
+                ("/swagger/v1/swagger.json", "KJ0BWK_HFT_2022231.Endpoint v1"));
+                
             }
             app.UseExceptionHandler(c => c.Run(async context =>
             {
