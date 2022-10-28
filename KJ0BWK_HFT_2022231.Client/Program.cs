@@ -9,9 +9,7 @@ namespace KJ0BWK_HFT_2022231.Client
 {
     class Program
     {
-        static PlayerLogic playerLogic;
-        static ClubLogic clubLogic;
-        static OwnerLogic ownerLogic;
+        static RestService rest;
         static void Create(string entity)
         {
             Console.WriteLine(entity + " create");
@@ -38,6 +36,7 @@ namespace KJ0BWK_HFT_2022231.Client
         {
             Console.WriteLine("Hello World!");
             
+
 
             var ownerSubMenu = new ConsoleMenu(args, level: 1)
                 .Add("List", () => List("Owner"))
