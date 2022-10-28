@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace KJ0BWK_HFT_2022231.Logic
 {
-    interface IOwnerLogic
+    public interface IOwnerLogic
     {
         void Create(Owner item);
         void Delete(int id);

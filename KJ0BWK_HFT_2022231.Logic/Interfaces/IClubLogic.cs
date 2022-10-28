@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace KJ0BWK_HFT_2022231.Logic
 {
-    interface IClubLogic
+    public interface IClubLogic
     {
         void Create(Club item);
         void Delete(int id);

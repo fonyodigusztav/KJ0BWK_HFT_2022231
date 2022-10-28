@@ -21,13 +21,7 @@ namespace KJ0BWK_HFT_2022231.Client
         {
             if (entity == "Player")
             {
-                var items = playerLogic.ReadAll();
-                Console.WriteLine("ID" + "\t" + "Name");
-                foreach (var item in items)
-                {
-                    Console.WriteLine(item.PlayerID + "\t" + item.Name);
-                }
-                Console.ReadLine();
+                
             }
         }
         static void Update(string entity)
@@ -43,18 +37,7 @@ namespace KJ0BWK_HFT_2022231.Client
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            Console.WriteLine("Hello");
-
-            var ctx = new FootballDbContext();
-
-            var playerRepo = new PlayerRepository(ctx);
-            var clubRepo = new ClubRepository(ctx);
-            var ownerRepo = new OwnerRepository(ctx);
-
-            playerLogic = new PlayerLogic(playerRepo);
-            clubLogic = new ClubLogic(clubRepo);
-            ownerLogic = new OwnerLogic(ownerRepo);
-
+            
 
             var ownerSubMenu = new ConsoleMenu(args, level: 1)
                 .Add("List", () => List("Owner"))

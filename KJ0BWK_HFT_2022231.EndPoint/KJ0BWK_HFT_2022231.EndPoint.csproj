@@ -4,6 +4,10 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+	<ItemGroup>
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+	</ItemGroup>
+	
   <ItemGroup>
     <ProjectReference Include="..\KJ0BWK_HFT_2022231.Logic\KJ0BWK_HFT_2022231.Logic.csproj" />
     <ProjectReference Include="..\KJ0BWK_HFT_2022231.Models\KJ0BWK_HFT_2022231.Models.csproj" />
