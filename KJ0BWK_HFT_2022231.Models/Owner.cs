@@ -19,7 +19,7 @@ namespace KJ0BWK_HFT_2022231.Models
         public int ClubID { get; set; }
         [Range(0, 99)]
         public int Age { get; set; }
-        public virtual Club Club { get; set; }
+        //public virtual Club Club { get; set; }
         public virtual ICollection<Club> Clubs { get; set; }
         public Owner()
         {

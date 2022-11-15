@@ -21,11 +21,11 @@ namespace KJ0BWK_HFT_2022231.Models
         public int OwnerID { get; set; }
         public virtual Owner Owner { get; set; }
         public virtual ICollection<Player> Players { get; set; }
-        public virtual ICollection<Owner> Owners { get; set; }
+        //public virtual ICollection<Owner> Owners { get; set; }
         public Club()
         {
             Players = new HashSet<Player>();
-            Owners = new HashSet<Owner>();
+            //Owners = new HashSet<Owner>();
         }
         public Club(string path)
         {
@@ -35,7 +35,7 @@ namespace KJ0BWK_HFT_2022231.Models
             Championship = split[2];
             OwnerID = int.Parse(split[3]);
             Players = new HashSet<Player>();
-            Owners = new HashSet<Owner>();
+            //Owners = new HashSet<Owner>();
         }
     }
 }
