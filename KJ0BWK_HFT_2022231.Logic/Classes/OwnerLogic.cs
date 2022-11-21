@@ -41,10 +41,6 @@ namespace KJ0BWK_HFT_2022231.Logic
         {
             this.repo.Update(item);
         }
-        //public IEnumerable<KeyValuePair<string, int>> ClubsOfOwnerClubNameLength()
-        //{
-        //    return from x in repo.ReadAll()
-        //           orderby x
-        //}
+        
     }
 }
