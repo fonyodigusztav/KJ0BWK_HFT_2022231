@@ -30,8 +30,8 @@ namespace KJ0BWK_HFT_2022231.Models
             string[] split = path.Split('#');
             OwnerID = int.Parse(split[0]);
             Name = split[1];
-            ClubID = int.Parse(split[2]);
-            Age = int.Parse(split[3]);
+            //ClubID = int.Parse(split[2]);
+            Age = int.Parse(split[2]);
             Clubs = new HashSet<Club>();
         }
     }

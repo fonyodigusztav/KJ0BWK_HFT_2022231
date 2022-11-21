@@ -9,6 +9,7 @@ namespace KJ0BWK_HFT_2022231.Client
 {
     class Program
     {
+         
         static RestService rest;
         static void Create(string entity)
         {
@@ -35,7 +36,38 @@ namespace KJ0BWK_HFT_2022231.Client
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            
+
+
+
+            var ctx = new FootballDbContext();
+            var repo = new PlayerRepository(ctx);
+            var logic = new PlayerLogic(repo);
+            //"1#Cristiano Ronaldo#36#ST#90#4"
+            Player p = new Player()
+            {
+                PlayerID = 6,
+                Name = "Lampard",
+                Age = 40,
+                Position = "CM",
+                Rating = 88,
+                ClubID = 5
+            };
+            logic.Create(p);
+
+            var avg = logic.GetAverageRatePerTeam(4);
+            var bestplayer = logic.BestPlayerInAClub("Chelsea");
+            var items = logic.ReadAll();
+            var avgAge = logic.AVGAgeByClub();
+            foreach (var item in avgAge)
+            {
+                Console.WriteLine($"Club: {item.Key}, Average age of players: {item.Value}");
+            }
+
+            ;
+
+
+
+
 
 
             var ownerSubMenu = new ConsoleMenu(args, level: 1)

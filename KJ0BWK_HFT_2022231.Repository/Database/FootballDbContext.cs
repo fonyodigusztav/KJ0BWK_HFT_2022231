@@ -46,21 +46,28 @@ namespace KJ0BWK_HFT_2022231.Repository
                 new Player("1#Cristiano Ronaldo#36#ST#90#4"),
                 new Player("2#Raheem Sterling#24#RW#89#5"),
                 new Player("3#Gabriel Jesus#30#ST#85#6"),
-                new Player("4#Harry Maguire#26#CB#60#4")
+                new Player("4#Harry Maguire#26#CB#60#4"),
+                new Player("5#Didier Drogba#40#ST#99#5")
             });
 
             modelBuilder.Entity<Club>().HasData(new Club[]
             {
                 new Club("4#Manchester united#PL#7"),
                 new Club("5#Chelsea#PL#8"),
-                new Club("6#Arsenal#PL#9")
+                new Club("6#Arsenal#PL#9"),
+                new Club("7#Barcelona#PL#7"),
+                new Club("8#RealMadrid#PL#7"),
+                new Club("9#Sevilla#PL#8")
             });
 
             modelBuilder.Entity<Owner>().HasData(new Owner[]
             {
-                new Owner("7#Gustav#4#32"),
-                new Owner("8#James#5#65"),
-                new Owner("9#Kiddo#6#46")
+                //new Owner("7#Gustav#4#32"),
+                //new Owner("8#James#5#65"),
+                //new Owner("9#Kiddo#6#46")
+                new Owner("7#Gustav#32"),
+                new Owner("8#James#65"),
+                new Owner("9#Kiddo#46")
             });
         }
     }
