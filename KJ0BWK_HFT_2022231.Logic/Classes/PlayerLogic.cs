@@ -61,6 +61,13 @@ namespace KJ0BWK_HFT_2022231.Logic
                 .Where(t => t.ClubID == clubID)
                 .Average(t => t.Rating);
         }
+        public IEnumerable<KeyValuePair<string, double>> AVGRatingByClub()
+        {
+            return from x in repo.ReadAll()
+                   group x by x.Club.Name into g
+                   select new KeyValuePair<string, double>
+                   (g.Key, g.Average(t => t.Rating));
+        }
         public IEnumerable<TeamInfo> TeamStatistics()
         {
             return from x in this.repo.ReadAll()
@@ -79,6 +86,13 @@ namespace KJ0BWK_HFT_2022231.Logic
                    select new KeyValuePair<string, double>
                    (g.Key, g.Average(t => t.Age));
         }
+        public IEnumerable<Player> PlayersInAClubOrderedByRating(string clubName)
+        {
+            return repo.ReadAll().Where(t => t.Club.Name == clubName)
+                .OrderByDescending(t => t.Rating)
+                .Select(t => t);
+        }
+
         public Player BestPlayerInAClub(string clubName)
         {
             return repo.ReadAll()
@@ -87,7 +101,7 @@ namespace KJ0BWK_HFT_2022231.Logic
                 .Select(t => t)
                 .First();
         }
-
+        
         public class TeamInfo
         {
             public int ClubID { get; set; }

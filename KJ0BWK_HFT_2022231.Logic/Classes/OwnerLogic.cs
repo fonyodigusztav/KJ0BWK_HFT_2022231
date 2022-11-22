@@ -41,6 +41,26 @@ namespace KJ0BWK_HFT_2022231.Logic
         {
             this.repo.Update(item);
         }
-        
+        public IEnumerable<KeyValuePair<string, ICollection<Club>>> asd()
+        {
+            return repo.ReadAll()
+                .Where(t => t.Clubs.Count() >= 2)
+                .Select(t => new KeyValuePair<string, ICollection<Club>>
+                (t.Name, t.Clubs));
+        }
+        //public IEnumerable<KeyValuePair<string, double>> AVGAgeByClub()
+        //{
+        //    return from x in repo.ReadAll()
+        //           group x by x.Club.Name into g
+        //           select new KeyValuePair<string, double>
+        //           (g.Key, g.Average(t => t.Age));
+        //}
+
+        //public IEnumerable<Player> PlayersInAClubOrderedByRating(string clubName)
+        //{
+        //    return repo.ReadAll().Where(t => t.Club.Name == clubName)
+        //        .OrderByDescending(t => t.Rating)
+        //        .Select(t => t);
+        //}
     }
 }
