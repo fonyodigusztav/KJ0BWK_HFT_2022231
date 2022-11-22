@@ -13,11 +13,8 @@ namespace KJ0BWK_HFT_2022231.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ClubID { get; set; }
-        [StringLength(3)]
         public string Name { get; set; }
-        [StringLength(10)]
         public string Championship { get; set; }
-        [Range(0, 8)]
         public int OwnerID { get; set; }
         public virtual Owner Owner { get; set; }
         public virtual ICollection<Player> Players { get; set; }

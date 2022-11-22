@@ -13,16 +13,13 @@ namespace KJ0BWK_HFT_2022231.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int PlayerID { get; set; }
-        [StringLength(30)]
         public string Name { get; set; }
         
-        [Range(0,50)]
         public int Age { get; set; }
         [StringLength(3)]
         public string Position { get; set; }
-        [Range(0,5)]
+        [Range(0,99)]
         public double Rating{ get; set; }
-        [Range(0, 8)]
         public int ClubID { get; set; }
         public virtual Club Club { get; set; }
         public Player()

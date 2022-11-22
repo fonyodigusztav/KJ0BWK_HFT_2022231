@@ -19,6 +19,10 @@ namespace KJ0BWK_HFT_2022231.Logic
 
         public void Create(Club item)
         {
+            if (item == null)
+            {
+                throw new ArgumentNullException(nameof(item));
+            }
             this.repo.Create(item);
         }
 
