@@ -14,7 +14,7 @@ namespace KJ0BWK_HFT_2022231.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int OwnerID { get; set; }
         public string Name { get; set; }
-        public int ClubID { get; set; }
+        [Range(0, 150)]
         public int Age { get; set; }
         //public virtual Club Club { get; set; }
         public virtual ICollection<Club> Clubs { get; set; }

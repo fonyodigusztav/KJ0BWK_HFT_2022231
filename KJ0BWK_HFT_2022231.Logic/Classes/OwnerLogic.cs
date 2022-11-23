@@ -19,6 +19,10 @@ namespace KJ0BWK_HFT_2022231.Logic
 
         public void Create(Owner item)
         {
+            if (item.Age <= 0)
+            {
+                throw new ArgumentException($"{item.Name} Owner's age is invalid");
+            }
             this.repo.Create(item);
         }
 

@@ -15,6 +15,7 @@ namespace KJ0BWK_HFT_2022231.Models
         public int PlayerID { get; set; }
         public string Name { get; set; }
         
+        [Range(0, 150)]
         public int Age { get; set; }
         [StringLength(3)]
         public string Position { get; set; }

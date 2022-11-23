@@ -23,6 +23,13 @@ namespace KJ0BWK_HFT_2022231.Logic
             {
                 throw new ArgumentNullException(nameof(item));
             }
+            if (item.Name == null ||
+                item.Championship == null)
+            {
+                throw new ArgumentException(
+                                    "Please set all input datas correctly"
+                                );
+            }
             this.repo.Create(item);
         }
 
