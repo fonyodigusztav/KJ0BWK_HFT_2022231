@@ -52,7 +52,7 @@ namespace KJ0BWK_HFT_2022231.Repository
 
             modelBuilder.Entity<Club>().HasData(new Club[]
             {
-                new Club("4#Manchester united#PL#7"),
+                new Club("4#Manchester United#PL#7"),
                 new Club("5#Chelsea#PL#8"),
                 new Club("6#Arsenal#PL#9"),
                 new Club("7#Barcelona#PL#7"),

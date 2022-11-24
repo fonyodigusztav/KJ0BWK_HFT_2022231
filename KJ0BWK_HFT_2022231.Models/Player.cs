@@ -21,7 +21,9 @@ namespace KJ0BWK_HFT_2022231.Models
         public string Position { get; set; }
         [Range(0,99)]
         public double Rating{ get; set; }
+        [ForeignKey(nameof(Club))]
         public int ClubID { get; set; }
+        [NotMapped]
         public virtual Club Club { get; set; }
         public Player()
         {

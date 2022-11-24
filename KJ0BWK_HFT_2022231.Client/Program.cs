@@ -65,11 +65,12 @@ namespace KJ0BWK_HFT_2022231.Client
 
             var repoclub = new ClubRepository(ctx);
             var logicClub = new ClubLogic(repoclub);
-
+            var asd = logicClub.OwnersOfClubs();
 
             var repoOwner = new OwnerRepository(ctx);
             var logicOwner = new OwnerLogic(repoOwner);
-            var asd = logicOwner.asd();
+
+            
             ;
 
 

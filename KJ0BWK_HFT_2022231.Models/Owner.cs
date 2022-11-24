@@ -17,6 +17,7 @@ namespace KJ0BWK_HFT_2022231.Models
         [Range(0, 150)]
         public int Age { get; set; }
         //public virtual Club Club { get; set; }
+        [NotMapped]
         public virtual ICollection<Club> Clubs { get; set; }
         public Owner()
         {

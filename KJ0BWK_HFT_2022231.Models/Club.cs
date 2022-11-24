@@ -15,8 +15,11 @@ namespace KJ0BWK_HFT_2022231.Models
         public int ClubID { get; set; }
         public string Name { get; set; }
         public string Championship { get; set; }
+        [ForeignKey(nameof(Owner))]
         public int OwnerID { get; set; }
+        [NotMapped]
         public virtual Owner Owner { get; set; }
+        [NotMapped]
         public virtual ICollection<Player> Players { get; set; }
         //public virtual ICollection<Owner> Owners { get; set; }
         public Club()

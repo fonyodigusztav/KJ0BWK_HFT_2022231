@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static KJ0BWK_HFT_2022231.Logic.PlayerLogic;
 
 namespace KJ0BWK_HFT_2022231.Test
 {
@@ -31,82 +32,94 @@ namespace KJ0BWK_HFT_2022231.Test
 
             var owners = new List<Owner>()
             {
-                new Owner("1#Gustav#20"),
-                //new Owner()
-                //{
-                //    Name = "Gusztav",
-                //    Age = 20,
-                //    OwnerID = 34
-                //}
+                //new Owner("1#Gustav#20"),
+                new Owner()
+                {
+                    Name = "Gusztav",
+                    Age = 20,
+                    OwnerID = 1,
+                },
+                new Owner()
+                {
+                    Name = "Gellert",
+                    Age = 30,
+                    OwnerID = 2,
+                }
             }.AsQueryable();
 
             var clubs = new List<Club>()
             {
-                new Club("4#PSG#Ligue1#1"),
-                new Club("5#Barcelona#LaLiga#1"),
-                //new Club()
-                //{
-                //    ClubID = 22,
-                //    Name = "PSG",
-                //    Championship = "Ligue1",
-                //    OwnerID = 34,
-
-                //},
-                //new Club()
-                //{
-                //    ClubID = 23,
-                //    Name = "Barcelona",
-                //    Championship = "LaLiga",
-                //    OwnerID = 34,
-
-                //}
+                //new Club("4#PSG#Ligue1#1"),
+                //new Club("5#Barcelona#LaLiga#1"),
+                new Club()
+                {
+                    ClubID = 1,
+                    Name = "PSG",
+                    Championship = "Ligue1",
+                    OwnerID = 1,
+                    Owner = owners.First()
+                },
+                new Club()
+                {
+                    ClubID = 2,
+                    Name = "Barcelona",
+                    Championship = "LaLiga",
+                    OwnerID = 2,
+                    Owner = owners.Skip(1).First()
+                }
             }.AsQueryable();
+
+            
+
 
             var players = new List<Player>()
             {
-                
-                new Player("1#Neymar#35#ST#20#4"),
-                new Player("2#Messi#35#RW#20#4"),
-                new Player("3#Lewandowski#40#ST#10#5"),
-                new Player("4#Gavi#20#CM#20#5")
-
-                //new Player()
-                //{
-                //    Name = "Neymar",
-                //    Age = 35,
-                //    ClubID = 22,
-                //    PlayerID = 30,
-                //    Position = "ST",
-                //    Rating = 20
-                //},
-                //new Player()
-                //{
-                //    Name = "Messi",
-                //    Age = 35,
-                //    ClubID = 22,
-                //    PlayerID = 31,
-                //    Position = "RW",
-                //    Rating = 30
-                //},
-                //new Player()
-                //{
-                //    Name = "Lewandowski",
-                //    Age = 40,
-                //    ClubID = 23,
-                //    PlayerID = 32,
-                //    Position = "SW",
-                //    Rating = 10
-                //},
-                //new Player()
-                //{
-                //    Name = "Gavi",
-                //    Age = 20,
-                //    ClubID = 23,
-                //    PlayerID = 33,
-                //    Position = "CM",
-                //    Rating = 20
-                //}
+                //new Player("1#Neymar#35#ST#20#4"),
+                //new Player("2#Messi#35#RW#20#4"),
+                //new Player("3#Lewandowski#40#ST#10#5"),
+                //new Player("4#Gavi#20#CM#20#5")
+                new Player()
+                {
+                    PlayerID = 1,
+                    Name = "Neymar",
+                    Age = 35,
+                    Position = "ST",
+                    Rating = 20,
+                    ClubID = 1,
+                    Club = clubs.First()
+                },
+                new Player()
+                {
+                    PlayerID = 2,
+                    Name = "Messi",
+                    Age = 35,
+                    Position = "RW",
+                    Rating = 20,
+                    ClubID = 1,
+                    Club = clubs.First()
+                },
+                new Player()
+                {
+                    PlayerID = 3,
+                    Name = "Lewandowski",
+                    Age = 40,
+                    Position = "ST",
+                    Rating = 10,
+                    ClubID = 2,
+                    Club = clubs.Skip(1).First()
+                },
+                new Player()
+                {
+                    PlayerID = 4,
+                    Name = "Gavi",
+                    Age = 20,
+                    Position = "CM",
+                    Rating = 20,
+                    ClubID = 2,
+                    Club = clubs.Skip(1).First()
+                }
             }.AsQueryable();
+            
 
             mockPlayerRepository.Setup((t) => t.ReadAll()).Returns(players);
             mockClubRepository.Setup((t) => t.ReadAll()).Returns(clubs);
@@ -116,6 +129,7 @@ namespace KJ0BWK_HFT_2022231.Test
             playerL = new PlayerLogic(mockPlayerRepository.Object);
             clubL = new ClubLogic(mockClubRepository.Object);
             ownerL = new OwnerLogic(mockOwnerRepository.Object);
+            ;
         }
 
         [TestCase(-30,false)]
@@ -317,14 +331,28 @@ namespace KJ0BWK_HFT_2022231.Test
             }
         }
 
+        //non cruds
+
         [Test]
         public void AVGRatingByClubTest()
         {
             var result = playerL.AVGRatingByClub();
             var expected = new List<KeyValuePair<string, double>>()
             {
-                new KeyValuePair<string, double>("PSG", 25),
+                new KeyValuePair<string, double>("PSG", 20),
                 new KeyValuePair<string, double>("Barcelona", 15)
+            };
+            Assert.That(result, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void AVGAgeByClubTest()
+        {
+            var result = playerL.AVGAgeByClub();
+            var expected = new List<KeyValuePair<string, double>>()
+            {
+                new KeyValuePair<string, double>("PSG", 35),
+                new KeyValuePair<string, double>("Barcelona", 30)
             };
             Assert.That(result, Is.EqualTo(expected));
         }
@@ -333,28 +361,52 @@ namespace KJ0BWK_HFT_2022231.Test
         public void PlayersInAClubOrderedByRatingTest()
         {
             var result = playerL.PlayersInAClubOrderedByRating("Barcelona");
-            Player lewa = playerL.Read(3);
-            Player gavi = playerL.Read(4);
+            var l = playerL.ReadAll().FirstOrDefault(x => x.Name == "Lewandowski");
+            var g = playerL.ReadAll().FirstOrDefault(x => x.Name == "Gavi");
             var expected = new List<Player>();
-            expected.Add(lewa);
-            expected.Add(gavi);
+            expected.Add(g);
+            expected.Add(l);
             Assert.That(result, Is.EqualTo(expected));
         }
+        [Test]
+        public void TeamStatisticsTest()
+        {
+            var result = playerL.TeamStatistics().ToList();
+            var expected = new List<TeamInfo>()
+            {
+                new TeamInfo()
+                {
+                    AvgRating = 20,
+                    ClubName = "PSG",
+                    PlayerNumber = 2
+                },
+                new TeamInfo()
+                {
+                    AvgRating = 15,
+                    ClubName = "Barcelona",
+                    PlayerNumber = 2
+                }
+            };
 
-        //public IEnumerable<Player> PlayersInAClubOrderedByRating(string clubName)
-        //{
-        //    return repo.ReadAll().Where(t => t.Club.Name == clubName)
-        //        .OrderByDescending(t => t.Rating)
-        //        .Select(t => t);
-        //}
-
-
-        //public IEnumerable<KeyValuePair<string, double>> AVGRatingByClub()
+            Assert.AreEqual(expected, result);
+        }
+        [Test]
+        public void OwnersOfClubsTest()
+        {
+            var result = clubL.OwnersOfClubs();
+            var expected = new List<KeyValuePair<string, string>>()
+            {
+                new KeyValuePair<string, string>( "PSG","Gusztav"),
+                new KeyValuePair<string, string>("Barcelona","Gellert")
+            };
+            Assert.That(result, Is.EqualTo(expected));
+        }
+        //public IEnumerable<KeyValuePair<string, string>> OwnersOfClubs()
         //{
         //    return from x in repo.ReadAll()
-        //           group x by x.Club.Name into g
-        //           select new KeyValuePair<string, double>
-        //           (g.Key, g.Average(t => t.Rating));
+        //           select new KeyValuePair<string, string>
+        //           (x.Name, x.Owner.Name);
         //}
+
     }
 }

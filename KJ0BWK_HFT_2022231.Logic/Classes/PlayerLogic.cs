@@ -67,6 +67,13 @@ namespace KJ0BWK_HFT_2022231.Logic
                 .Where(t => t.ClubID == clubID)
                 .Average(t => t.Rating);
         }
+        //public IEnumerable<KeyValuePair<string, double>> AVGRatingByClub()
+        //{
+        //    return from x in repo.ReadAll()
+        //           group x by x.Club.Name into g
+        //           select new KeyValuePair<string, double>
+        //           (g.Key, g.Average(t => t.Rating));
+        //}
         public IEnumerable<KeyValuePair<string, double>> AVGRatingByClub()
         {
             return from x in repo.ReadAll()
@@ -77,10 +84,10 @@ namespace KJ0BWK_HFT_2022231.Logic
         public IEnumerable<TeamInfo> TeamStatistics()
         {
             return from x in this.repo.ReadAll()
-                   group x by x.ClubID into g
+                   group x by x.Club.Name into g
                    select new TeamInfo()
                    {
-                       ClubID = g.Key,
+                       ClubName = g.Key,
                        AvgRating = g.Average(t => t.Rating),
                        PlayerNumber = g.Count()
                    };
@@ -107,18 +114,30 @@ namespace KJ0BWK_HFT_2022231.Logic
                 .Select(t => t)
                 .First();
         }
-        
         public class TeamInfo
         {
-            public int ClubID { get; set; }
+            public string ClubName { get; set; }
             public double? AvgRating { get; set; }
             public int PlayerNumber { get; set; }
-        }
-        public class AvgAgePerTeamHelper
-        {
-            public int clubID { get; set; }
-            public string ClubName { get; set; }
-            public double avgAge { get; set; }
+
+            public override bool Equals(object obj)
+            {
+                TeamInfo b = obj as TeamInfo;
+                if (b == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return this.ClubName == b.ClubName
+                        && this.AvgRating == b.AvgRating
+                        && this.PlayerNumber == b.PlayerNumber;
+                }
+            }
+            public override int GetHashCode()
+            {
+                return HashCode.Combine(this.ClubName, this.AvgRating, this.PlayerNumber);
+            }
         }
     }
 }
