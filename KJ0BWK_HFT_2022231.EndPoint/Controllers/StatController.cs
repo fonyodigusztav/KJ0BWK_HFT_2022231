@@ -1,4 +1,5 @@
 ﻿using KJ0BWK_HFT_2022231.Logic;
+using KJ0BWK_HFT_2022231.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -25,40 +26,29 @@ namespace KJ0BWK_HFT_2022231.EndPoint.Controllers
         [HttpGet]
         public IEnumerable<KeyValuePair<string, string>> OwnersOfClubs()
         {
-            return cll.
+            return cll.OwnersOfClubs();
         }
 
-        //public IEnumerable<KeyValuePair<string, string>> OwnersOfClubs()
-        //{
-        //    return from x in repo.ReadAll()
-        //           select new KeyValuePair<string, string>
-        //           (x.Name, x.Owner.Name);
-        //}
-        //public IEnumerable<KeyValuePair<string, double>> AVGRatingByClub()
-        //{
-        //    return from x in repo.ReadAll()
-        //           group x by x.Club.Name into g
-        //           select new KeyValuePair<string, double>
-        //           (g.Key, g.Average(t => t.Rating));
-        //}
-        //public IEnumerable<TeamInfo> TeamStatistics()
-        //{
-        //    return from x in this.repo.ReadAll()
-        //           group x by x.Club.Name into g
-        //           select new TeamInfo()
-        //           {
-        //               ClubName = g.Key,
-        //               AvgRating = g.Average(t => t.Rating),
-        //               PlayerNumber = g.Count()
-        //           };
-        //}
-        //public IEnumerable<KeyValuePair<string, double>> AVGAgeByClub()
-        //{
-        //    return from x in repo.ReadAll()
-        //           group x by x.Club.Name into g
-        //           select new KeyValuePair<string, double>
-        //           (g.Key, g.Average(t => t.Age));
-        //}
+        [HttpGet]
+        public IEnumerable<KeyValuePair<string, double>> AVGRatingByClub()
+        {
+            return pll.AVGRatingByClub();
+        }
+        [HttpGet]
+        public IEnumerable<PlayerLogic.TeamInfo> TeamStatistics()
+        {
+            return pll.TeamStatistics();
+        }
+        [HttpGet]
+        public IEnumerable<KeyValuePair<string, double>> AVGAgeByClub()
+        {
+            return pll.AVGAgeByClub();
+        }
+        [HttpGet("{clubName}")]
+        public IEnumerable<Player> PlayersInAClubOrderedByRating(string clubName)
+        {
+            return pll.PlayersInAClubOrderedByRating(clubName);
+        }
         //public IEnumerable<Player> PlayersInAClubOrderedByRating(string clubName)
         //{
         //    return repo.ReadAll().Where(t => t.Club.Name == clubName)
