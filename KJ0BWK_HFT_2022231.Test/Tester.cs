@@ -27,64 +27,81 @@ namespace KJ0BWK_HFT_2022231.Test
 
             var owners = new List<Owner>()
             {
-                new Owner()
-                {
-                    Name = "Gusztav",
-                    Age = 20,
-                    OwnerID = 34
-                }
+                new Owner("1#Gustav#20"),
+                //new Owner()
+                //{
+                //    Name = "Gusztav",
+                //    Age = 20,
+                //    OwnerID = 34
+                //}
             }.AsQueryable();
-            
+
             var clubs = new List<Club>()
             {
-                new Club()
-                {
-                    ClubID = 22,
-                    Name = "PSG",
-                    Championship = "Ligue1",
-                    OwnerID = 34,
+                new Club("4#PSG#Ligue1#1"),
+                new Club("5#Barcelona#LaLiga#1"),
+                //new Club()
+                //{
+                //    ClubID = 22,
+                //    Name = "PSG",
+                //    Championship = "Ligue1",
+                //    OwnerID = 34,
 
-                },
-                new Club()
-                {
-                    ClubID = 23,
-                    Name = "Barcelona",
-                    Championship = "LaLiga",
-                    OwnerID = 34,
+                //},
+                //new Club()
+                //{
+                //    ClubID = 23,
+                //    Name = "Barcelona",
+                //    Championship = "LaLiga",
+                //    OwnerID = 34,
 
-                }
+                //}
             }.AsQueryable();
-
 
             var players = new List<Player>()
             {
-                new Player()
-                {
-                    Name = "Neymar",
-                    Age = 36,
-                    ClubID = 22,
-                    PlayerID = 30,
-                    Position = "ST",
-                    Rating = 91
-                },
-                new Player()
-                {
-                    Name = "Messi",
-                    Age = 35,
-                    ClubID = 22,
-                    PlayerID = 31,
-                    Position = "RW",
-                    Rating = 97
-                },
-                new Player()
-                {
-                    Name = "Lewandowski",
-                    Age = 37,
-                    ClubID = 23,
-                    PlayerID = 32,
-                    Position = "SW",
-                    Rating = 93
-                }
+                
+                new Player("1#Neymar#35#ST#20#4"),
+                new Player("2#Messi#35#RW#20#4"),
+                new Player("3#Lewandowski#40#ST#10#5"),
+                new Player("4#Gavi#20#CM#20#5")
+
+                //new Player()
+                //{
+                //    Name = "Neymar",
+                //    Age = 35,
+                //    ClubID = 22,
+                //    PlayerID = 30,
+                //    Position = "ST",
+                //    Rating = 20
+                //},
+                //new Player()
+                //{
+                //    Name = "Messi",
+                //    Age = 35,
+                //    ClubID = 22,
+                //    PlayerID = 31,
+                //    Position = "RW",
+                //    Rating = 30
+                //},
+                //new Player()
+                //{
+                //    Name = "Lewandowski",
+                //    Age = 40,
+                //    ClubID = 23,
+                //    PlayerID = 32,
+                //    Position = "SW",
+                //    Rating = 10
+                //},
+                //new Player()
+                //{
+                //    Name = "Gavi",
+                //    Age = 20,
+                //    ClubID = 23,
+                //    PlayerID = 33,
+                //    Position = "CM",
+                //    Rating = 20
+                //}
             }.AsQueryable();
 
             mockPlayerRepository.Setup((t) => t.ReadAll()).Returns(players);
@@ -94,7 +111,6 @@ namespace KJ0BWK_HFT_2022231.Test
             playerL = new PlayerLogic(mockPlayerRepository.Object);
             clubL = new ClubLogic(mockClubRepository.Object);
             ownerL = new OwnerLogic(mockOwnerRepository.Object);
-
         }
 
         [TestCase(-30,false)]
@@ -296,7 +312,20 @@ namespace KJ0BWK_HFT_2022231.Test
             }
         }
 
-        
+        [Test]
+        public void AVGRatingByClubTest()
+        {
+            var result = playerL.AVGRatingByClub();
+            var expected = new List<KeyValuePair<string, double>>()
+            {
+                new KeyValuePair<string, double>("PSG", 25),
+                new KeyValuePair<string, double>("Barcelona", 15)
+            };
+            Assert.That(result, Is.EqualTo(expected));
+        }
+
+
+
         //public IEnumerable<KeyValuePair<string, double>> AVGRatingByClub()
         //{
         //    return from x in repo.ReadAll()
