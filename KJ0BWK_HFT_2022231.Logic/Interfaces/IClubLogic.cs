@@ -1,4 +1,5 @@
 ﻿using KJ0BWK_HFT_2022231.Models;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace KJ0BWK_HFT_2022231.Logic
@@ -10,5 +11,6 @@ namespace KJ0BWK_HFT_2022231.Logic
         Club Read(int id);
         IQueryable<Club> ReadAll();
         void Update(Club item);
+        public IEnumerable<KeyValuePair<string, string>> OwnersOfClubs();
     }
 }

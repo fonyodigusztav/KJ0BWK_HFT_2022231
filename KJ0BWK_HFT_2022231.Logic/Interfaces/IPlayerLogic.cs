@@ -11,7 +11,10 @@ namespace KJ0BWK_HFT_2022231.Logic
         double? GetAverageRatePerTeam(int clubID);
         Player Read(int id);
         IQueryable<Player> ReadAll();
-        IEnumerable<PlayerLogic.TeamInfo> TeamStatistics();
         void Update(Player item);
+        public IEnumerable<KeyValuePair<string, double>> AVGRatingByClub();
+        public IEnumerable<PlayerLogic.TeamInfo> TeamStatistics();
+        public IEnumerable<KeyValuePair<string, double>> AVGAgeByClub();
+        public IEnumerable<Player> PlayersInAClubOrderedByRating(string clubName);
     }
 }

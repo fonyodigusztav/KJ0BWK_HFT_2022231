@@ -1,8 +1,7 @@
 ﻿using ConsoleTools;
-using KJ0BWK_HFT_2022231.Logic;
 using KJ0BWK_HFT_2022231.Models;
-using KJ0BWK_HFT_2022231.Repository;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace KJ0BWK_HFT_2022231.Client
@@ -13,14 +12,23 @@ namespace KJ0BWK_HFT_2022231.Client
         static RestService rest;
         static void Create(string entity)
         {
-            Console.WriteLine(entity + " create");
-            Console.ReadLine();
+            if (entity == "Player")
+            {
+                Console.Write("Enter Player Name: ");
+                string name = Console.ReadLine();
+                rest.Post(new Player() { Name = name }, "player");
+            }
         }
         static void List(string entity)
         {
             if (entity == "Player")
             {
-                
+                List<Player> players = rest.Get<Player>("player");
+                foreach (var item in players)
+                {
+                    Console.WriteLine(item.Name);
+                }
+                Console.ReadLine();
             }
         }
         static void Update(string entity)
@@ -35,40 +43,9 @@ namespace KJ0BWK_HFT_2022231.Client
         }
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            rest = new RestService("http://localhost:64355/");
 
 
-
-            //var ctx = new FootballDbContext();
-            //var repo = new PlayerRepository(ctx);
-            //var logic = new PlayerLogic(repo);
-            ////"1#Cristiano Ronaldo#36#ST#90#4"
-            //Player p = new Player()
-            //{
-            //    PlayerID = 6,
-            //    Name = "Lampard",
-            //    Age = 40,
-            //    Position = "CM",
-            //    Rating = 88,
-            //    ClubID = 5
-            //};
-            //logic.Create(p);
-
-            //var avg = logic.GetAverageRatePerTeam(4);
-            //var bestplayer = logic.BestPlayerInAClub("Chelsea");
-
-
-            //var playersInAClubOrdered = logic.PlayersInAClubOrderedByRating("Chelsea");
-            //var avgAge = logic.AVGAgeByClub();
-            //var avgRating = logic.AVGRatingByClub();
-            //var teamStat = logic.TeamStatistics();
-
-            //var repoclub = new ClubRepository(ctx);
-            //var logicClub = new ClubLogic(repoclub);
-            //var asd = logicClub.OwnersOfClubs();
-
-            //var repoOwner = new OwnerRepository(ctx);
-            //var logicOwner = new OwnerLogic(repoOwner);
 
             var ownerSubMenu = new ConsoleMenu(args, level: 1)
                 .Add("List", () => List("Owner"))
@@ -98,7 +75,6 @@ namespace KJ0BWK_HFT_2022231.Client
                 .Add("Exit", ConsoleMenu.Close);
             
             menu.Show();
-            ;
         }
     }
 }
