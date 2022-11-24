@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace KJ0BWK_HFT_2022231.Models
@@ -20,6 +21,7 @@ namespace KJ0BWK_HFT_2022231.Models
         [NotMapped]
         public virtual Owner Owner { get; set; }
         [NotMapped]
+        [JsonIgnore]
         public virtual ICollection<Player> Players { get; set; }
         //public virtual ICollection<Owner> Owners { get; set; }
         public Club()

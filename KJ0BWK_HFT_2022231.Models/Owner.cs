@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace KJ0BWK_HFT_2022231.Models
@@ -18,6 +19,7 @@ namespace KJ0BWK_HFT_2022231.Models
         public int Age { get; set; }
         //public virtual Club Club { get; set; }
         [NotMapped]
+        [JsonIgnore]
         public virtual ICollection<Club> Clubs { get; set; }
         public Owner()
         {
