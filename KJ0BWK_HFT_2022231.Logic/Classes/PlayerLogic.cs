@@ -16,8 +16,6 @@ namespace KJ0BWK_HFT_2022231.Logic
             this.repo = repo;
         }
 
-        
-
         public void Create(Player item)
         {
             if (item.Age <= 0)

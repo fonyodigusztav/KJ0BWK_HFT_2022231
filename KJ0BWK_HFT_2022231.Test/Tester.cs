@@ -25,6 +25,10 @@ namespace KJ0BWK_HFT_2022231.Test
             var mockClubRepository = new Mock<IRepository<Club>>();
             var mockOwnerRepository = new Mock<IRepository<Owner>>();
 
+            //var mockPlayerRepository = new Mock<IPlayerRepository>();
+            //var mockClubRepository = new Mock<IClubRepository>();
+            //var mockOwnerRepository = new Mock<IOwnerRepository>();
+
             var owners = new List<Owner>()
             {
                 new Owner("1#Gustav#20"),
@@ -107,6 +111,7 @@ namespace KJ0BWK_HFT_2022231.Test
             mockPlayerRepository.Setup((t) => t.ReadAll()).Returns(players);
             mockClubRepository.Setup((t) => t.ReadAll()).Returns(clubs);
             mockOwnerRepository.Setup((t) => t.ReadAll()).Returns(owners);
+
 
             playerL = new PlayerLogic(mockPlayerRepository.Object);
             clubL = new ClubLogic(mockClubRepository.Object);
@@ -324,6 +329,24 @@ namespace KJ0BWK_HFT_2022231.Test
             Assert.That(result, Is.EqualTo(expected));
         }
 
+        [Test]
+        public void PlayersInAClubOrderedByRatingTest()
+        {
+            var result = playerL.PlayersInAClubOrderedByRating("Barcelona");
+            Player lewa = playerL.Read(3);
+            Player gavi = playerL.Read(4);
+            var expected = new List<Player>();
+            expected.Add(lewa);
+            expected.Add(gavi);
+            Assert.That(result, Is.EqualTo(expected));
+        }
+
+        //public IEnumerable<Player> PlayersInAClubOrderedByRating(string clubName)
+        //{
+        //    return repo.ReadAll().Where(t => t.Club.Name == clubName)
+        //        .OrderByDescending(t => t.Rating)
+        //        .Select(t => t);
+        //}
 
 
         //public IEnumerable<KeyValuePair<string, double>> AVGRatingByClub()
