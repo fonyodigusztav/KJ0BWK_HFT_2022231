@@ -39,44 +39,36 @@ namespace KJ0BWK_HFT_2022231.Client
 
 
 
-            var ctx = new FootballDbContext();
-            var repo = new PlayerRepository(ctx);
-            var logic = new PlayerLogic(repo);
-            //"1#Cristiano Ronaldo#36#ST#90#4"
-            Player p = new Player()
-            {
-                PlayerID = 6,
-                Name = "Lampard",
-                Age = 40,
-                Position = "CM",
-                Rating = 88,
-                ClubID = 5
-            };
-            logic.Create(p);
+            //var ctx = new FootballDbContext();
+            //var repo = new PlayerRepository(ctx);
+            //var logic = new PlayerLogic(repo);
+            ////"1#Cristiano Ronaldo#36#ST#90#4"
+            //Player p = new Player()
+            //{
+            //    PlayerID = 6,
+            //    Name = "Lampard",
+            //    Age = 40,
+            //    Position = "CM",
+            //    Rating = 88,
+            //    ClubID = 5
+            //};
+            //logic.Create(p);
 
-            var avg = logic.GetAverageRatePerTeam(4);
-            var bestplayer = logic.BestPlayerInAClub("Chelsea");
-
-
-            var playersInAClubOrdered = logic.PlayersInAClubOrderedByRating("Chelsea");
-            var avgAge = logic.AVGAgeByClub();
-            var avgRating = logic.AVGRatingByClub();
-            var teamStat = logic.TeamStatistics();
-
-            var repoclub = new ClubRepository(ctx);
-            var logicClub = new ClubLogic(repoclub);
-            var asd = logicClub.OwnersOfClubs();
-
-            var repoOwner = new OwnerRepository(ctx);
-            var logicOwner = new OwnerLogic(repoOwner);
-
-            
-            ;
+            //var avg = logic.GetAverageRatePerTeam(4);
+            //var bestplayer = logic.BestPlayerInAClub("Chelsea");
 
 
+            //var playersInAClubOrdered = logic.PlayersInAClubOrderedByRating("Chelsea");
+            //var avgAge = logic.AVGAgeByClub();
+            //var avgRating = logic.AVGRatingByClub();
+            //var teamStat = logic.TeamStatistics();
 
+            //var repoclub = new ClubRepository(ctx);
+            //var logicClub = new ClubLogic(repoclub);
+            //var asd = logicClub.OwnersOfClubs();
 
-
+            //var repoOwner = new OwnerRepository(ctx);
+            //var logicOwner = new OwnerLogic(repoOwner);
 
             var ownerSubMenu = new ConsoleMenu(args, level: 1)
                 .Add("List", () => List("Owner"))

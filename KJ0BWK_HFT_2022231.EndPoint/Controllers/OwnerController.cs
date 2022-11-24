@@ -37,7 +37,7 @@ namespace KJ0BWK_HFT_2022231.EndPoint.Controllers
         }
 
         [HttpPut]
-        public void Update(int id, [FromBody] Owner value)
+        public void Update([FromBody] Owner value)
         {
             this.logic.Update(value);
         }

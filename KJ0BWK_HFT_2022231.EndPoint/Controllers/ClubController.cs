@@ -40,7 +40,7 @@ namespace KJ0BWK_HFT_2022231.EndPoint.Controllers
 
         // PUT api/<ClubController>/5
         [HttpPut]
-        public void Update(int id, [FromBody] Club value)
+        public void Update([FromBody] Club value)
         {
             this.logic.Update(value);
         }
