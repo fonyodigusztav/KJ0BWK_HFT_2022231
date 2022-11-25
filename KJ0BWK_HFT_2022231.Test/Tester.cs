@@ -113,7 +113,7 @@ namespace KJ0BWK_HFT_2022231.Test
                     PlayerID = 4,
                     Name = "Gavi",
                     Age = 20,
-                    Position = "CM",
+                    Position = "CDM",
                     Rating = 20,
                     ClubID = 2,
                     Club = clubs.Skip(1).First()
@@ -360,7 +360,7 @@ namespace KJ0BWK_HFT_2022231.Test
         [Test]
         public void PlayersInAClubOrderedByRatingTest()
         {
-            var result = playerL.PlayersInAClubOrderedByRating("Barcelona");
+            var result = playerL.PlayersInAClubOrderedByRating(2);
             var l = playerL.ReadAll().FirstOrDefault(x => x.Name == "Lewandowski");
             var g = playerL.ReadAll().FirstOrDefault(x => x.Name == "Gavi");
             var expected = new List<Player>();
@@ -401,12 +401,43 @@ namespace KJ0BWK_HFT_2022231.Test
             };
             Assert.That(result, Is.EqualTo(expected));
         }
-        //public IEnumerable<KeyValuePair<string, string>> OwnersOfClubs()
-        //{
-        //    return from x in repo.ReadAll()
-        //           select new KeyValuePair<string, string>
-        //           (x.Name, x.Owner.Name);
-        //}
+        [Test]
+        public void DefendersInAClubTest()
+        {
+            var result = playerL.DefendersInAClub();
+            var expected = new List<KeyValuePair<string, int>>()
+            {
+                new KeyValuePair<string, int>("PSG", 0),
+                new KeyValuePair<string, int>("Barcelona", 1),
+            };
+            Assert.That(result, Is.EqualTo(expected));
+        }
+        [Test]
+        public void AttackersInAClubTest()
+        {
+            var result = playerL.AttackersInAClub();
+            var expected = new List<KeyValuePair<string, int>>()
+            {
+                new KeyValuePair<string, int>("PSG", 2),
+                new KeyValuePair<string, int>("Barcelona", 1),
+            };
+            Assert.That(result, Is.EqualTo(expected));
+        }
+        [Test]
+        public void GetAverageRatePerTeamTest()
+        {
+            double? result = playerL.GetAverageRatePerTeam(2);
+            double? expected = 15;
+            Assert.That(result, Is.EqualTo(expected));
+        }
+        [Test]
+        public void BestPlayerInAClubTest()
+        {
+            Player result = playerL.BestPlayerInAClub("Barcelona");
+            Player expected = playerL.ReadAll()
+                .FirstOrDefault(x => x.Name == "Gavi");
+            Assert.That(result, Is.EqualTo(expected));
+        }
 
     }
 }

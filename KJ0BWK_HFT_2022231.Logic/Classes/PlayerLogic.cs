@@ -67,13 +67,6 @@ namespace KJ0BWK_HFT_2022231.Logic
                 .Where(t => t.ClubID == clubID)
                 .Average(t => t.Rating);
         }
-        //public IEnumerable<KeyValuePair<string, double>> AVGRatingByClub()
-        //{
-        //    return from x in repo.ReadAll()
-        //           group x by x.Club.Name into g
-        //           select new KeyValuePair<string, double>
-        //           (g.Key, g.Average(t => t.Rating));
-        //}
         public IEnumerable<KeyValuePair<string, double>> AVGRatingByClub()
         {
             return from x in repo.ReadAll()
@@ -99,11 +92,36 @@ namespace KJ0BWK_HFT_2022231.Logic
                    select new KeyValuePair<string, double>
                    (g.Key, g.Average(t => t.Age));
         }
-        public IEnumerable<Player> PlayersInAClubOrderedByRating(string clubName)
+        public IEnumerable<Player> PlayersInAClubOrderedByRating(int clubID)
         {
-            return repo.ReadAll().Where(t => t.Club.Name == clubName)
+            return repo.ReadAll().Where(t => t.Club.ClubID == clubID)
                 .OrderByDescending(t => t.Rating)
                 .Select(t => t);
+        }
+        public IEnumerable<KeyValuePair<string, int>> DefendersInAClub()
+        {
+            return from x in repo.ReadAll()
+                   group x by x.Club.Name into g
+                   select new KeyValuePair<string, int>
+                   (g.Key, g.Count(t => t.Position == "CB" 
+                                        || t.Position == "LB"
+                                        || t.Position == "RB"
+                                        || t.Position == "RWB"
+                                        || t.Position == "LWB"
+                                        || t.Position == "CDM"));
+        }
+        public IEnumerable<KeyValuePair<string, int>> AttackersInAClub()
+        {
+            return from x in repo.ReadAll()
+                   group x by x.Club.Name into g
+                   select new KeyValuePair<string, int>
+                   (g.Key, g.Count(t => t.Position == "ST"
+                                        || t.Position == "CF"
+                                        || t.Position == "RF"
+                                        || t.Position == "LF"
+                                        || t.Position == "RW"
+                                        || t.Position == "LW"
+                                        || t.Position == "CAM"));
         }
 
         public Player BestPlayerInAClub(string clubName)

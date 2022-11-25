@@ -35,25 +35,19 @@ namespace KJ0BWK_HFT_2022231.EndPoint.Controllers
             return pll.AVGRatingByClub();
         }
         [HttpGet]
-        public IEnumerable<PlayerLogic.TeamInfo> TeamStatistics()
-        {
-            return pll.TeamStatistics();
-        }
-        [HttpGet]
         public IEnumerable<KeyValuePair<string, double>> AVGAgeByClub()
         {
             return pll.AVGAgeByClub();
         }
-        [HttpGet("{clubName}")]
-        public IEnumerable<Player> PlayersInAClubOrderedByRating(string clubName)
+        [HttpGet]
+        public IEnumerable<KeyValuePair<string, int>> DefendersInAClub()
         {
-            return pll.PlayersInAClubOrderedByRating(clubName);
+            return pll.DefendersInAClub();
         }
-        //public IEnumerable<Player> PlayersInAClubOrderedByRating(string clubName)
-        //{
-        //    return repo.ReadAll().Where(t => t.Club.Name == clubName)
-        //        .OrderByDescending(t => t.Rating)
-        //        .Select(t => t);
-        //}
+        [HttpGet]
+        public IEnumerable<KeyValuePair<string, int>> AttackersInAClub()
+        {
+            return pll.AttackersInAClub();
+        }
     }
 }

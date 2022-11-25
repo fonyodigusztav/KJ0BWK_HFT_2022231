@@ -64,9 +64,9 @@ namespace KJ0BWK_HFT_2022231.Client
             var menuNonCrud = new ConsoleMenu()
                 .Add("OwnersOfClubs", () => OwnerOfClubs(restS))
                 .Add("AVGRatingByClub", () => AVGRatingByClub(restS))
-                .Add("TeamStatistics", () => TeamStatistics(restS))
                 .Add("AVGAgeByClub", () => AVGAgeByClub(restS))
-                .Add("PlayersInAClubOrderedByRating", () => PlayersInAClubOrderedByRating(restS))
+                .Add("DefendersInAClub", () => DefendersInAClub(restS))
+                .Add("AttackersInAClub", () => AttackersInAClub(restS))
                 .Add("Close", ConsoleMenu.Close);
             menuNonCrud.Show();
         }
@@ -349,49 +349,55 @@ namespace KJ0BWK_HFT_2022231.Client
         //NonCrud
         private static void OwnerOfClubs(RestService restS)
         {
-            var clubsOwners = restS.Get<KeyValuePair<string, string>>("stat/ownerofclubs");
+            var clubsOwners = restS.Get<KeyValuePair<string, string>>("Stat/OwnersOfClubs");
             Console.WriteLine("Clubs listed with its Owners next to it:");
             foreach (var item in clubsOwners)
             {
-                Console.WriteLine(item.Key, item.Value);
+                Console.WriteLine($"{item.Key}, {item.Value}");
             }
             Console.WriteLine("Press any key to exit!");
             Console.ReadKey();
         }
         private static void AVGRatingByClub(RestService restS)
         {
-            var avgRatings = restS.Get<KeyValuePair<string, double>>("stat/avgratingsbyclub");
+            var avgRatings = restS.Get<KeyValuePair<string, double>>("Stat/AVGRatingByClub");
             Console.WriteLine("Clubs listed with the average ratings of its players");
             foreach (var item in avgRatings)
             {
-                Console.WriteLine(item.Key, item.Value);
+                Console.WriteLine($"{item.Key}, {item.Value}");
             }
             Console.WriteLine("Press any key to exit!");
             Console.ReadKey();
-        }
-        private static void TeamStatistics(RestService restS)
-        {
-            //var teamstat = restS.Get<Logic.PlayerLogic.TeamInfo>("stat/avgratingsbyclub");
-            Console.WriteLine("hiba");
         }
         private static void AVGAgeByClub(RestService restS)
         {
-            var avgAge = restS.Get<KeyValuePair<string, double>>("stat/avgagesbyclub");
+            var avgAge = restS.Get<KeyValuePair<string, double>>("Stat/AVGAgeByClub");
             Console.WriteLine("Clubs listed with the average ages of its players");
             foreach (var item in avgAge)
             {
-                Console.WriteLine(item.Key, item.Value);
+                Console.WriteLine($"{item.Key}, {item.Value}");
             }
             Console.WriteLine("Press any key to exit!");
             Console.ReadKey();
         }
-        private static void PlayersInAClubOrderedByRating(RestService restS)
+        private static void DefendersInAClub(RestService restS)
         {
-            var orderedPlayers = restS.Get<Player>("stat/playersinacluborderedbyrating");
-            Console.WriteLine("Players in a club ordered by rating");
-            foreach (var item in orderedPlayers)
+            var defs = restS.Get<KeyValuePair<string, int>>("Stat/DefendersInAClub");
+            Console.WriteLine("Clubs listed with the number of its defenders");
+            foreach (var item in defs)
             {
-                Console.WriteLine(item.Name);
+                Console.WriteLine($"{item.Key}, {item.Value}");
+            }
+            Console.WriteLine("Press any key to exit!");
+            Console.ReadKey();
+        }
+        private static void AttackersInAClub(RestService restS)
+        {
+            var atts = restS.Get<KeyValuePair<string, int>>("Stat/AttackersInAClub");
+            Console.WriteLine("Clubs listed with the number of its attackers");
+            foreach (var item in atts)
+            {
+                Console.WriteLine($"{item.Key}, {item.Value}");
             }
             Console.WriteLine("Press any key to exit!");
             Console.ReadKey();

@@ -15,6 +15,8 @@ namespace KJ0BWK_HFT_2022231.Logic
         public IEnumerable<KeyValuePair<string, double>> AVGRatingByClub();
         public IEnumerable<PlayerLogic.TeamInfo> TeamStatistics();
         public IEnumerable<KeyValuePair<string, double>> AVGAgeByClub();
-        public IEnumerable<Player> PlayersInAClubOrderedByRating(string clubName);
+        public IEnumerable<Player> PlayersInAClubOrderedByRating(int clubID);
+        public IEnumerable<KeyValuePair<string, int>> DefendersInAClub();
+        public IEnumerable<KeyValuePair<string, int>> AttackersInAClub();
     }
 }
