@@ -20,11 +20,18 @@ namespace KJ0BWK_HFT_2022231.Repository
 
         public override void Update(Player item)
         {
-            var old = Read(item.PlayerID);
-            foreach (var prop in old.GetType().GetProperties())
+            var oldPlayer = Read(item.PlayerID);
+            if (oldPlayer == null)
             {
-                prop.SetValue(old, prop.GetValue(item));
+                throw new InvalidOperationException("player doesn't exists in the current context");
             }
+            oldPlayer.Name = item.Name;
+            oldPlayer.PlayerID = item.PlayerID;
+            oldPlayer.Position = item.Position;
+            oldPlayer.ClubID = item.ClubID;
+            oldPlayer.Age = item.Age;
+            oldPlayer.Rating = item.Rating;
+
             ctx.SaveChanges();
         }
     }

@@ -20,11 +20,16 @@ namespace KJ0BWK_HFT_2022231.Repository
 
         public override void Update(Club item)
         {
-            var old = Read(item.ClubID);
-            foreach (var prop in old.GetType().GetProperties())
+            var oldClub = Read(item.ClubID);
+            if (oldClub == null)
             {
-                prop.SetValue(old, prop.GetValue(item));
+                throw new InvalidOperationException("club doesn't exists in the current context");
             }
+            oldClub.Name = item.Name;
+            oldClub.Championship = item.Championship;
+            oldClub.OwnerID = item.OwnerID;
+            oldClub.ClubID = item.ClubID;
+
             ctx.SaveChanges();
         }
     }

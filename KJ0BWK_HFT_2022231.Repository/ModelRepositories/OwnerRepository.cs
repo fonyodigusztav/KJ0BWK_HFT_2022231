@@ -20,11 +20,15 @@ namespace KJ0BWK_HFT_2022231.Repository
 
         public override void Update(Owner item)
         {
-            var old = Read(item.OwnerID);
-            foreach (var prop in old.GetType().GetProperties())
+            var oldOwner = Read(item.OwnerID);
+            if (oldOwner == null)
             {
-                prop.SetValue(old, prop.GetValue(item));
+                throw new InvalidOperationException("owner doesn't exists in the current context");
             }
+            oldOwner.Name = item.Name;
+            oldOwner.OwnerID = item.OwnerID;
+            oldOwner.Age = item.Age;
+
             ctx.SaveChanges();
         }
     }

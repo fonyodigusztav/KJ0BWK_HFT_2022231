@@ -65,8 +65,8 @@ namespace KJ0BWK_HFT_2022231.Client
                 .Add("OwnersOfClubs", () => OwnerOfClubs(restS))
                 .Add("AVGRatingByClub", () => AVGRatingByClub(restS))
                 .Add("TeamStatistics", () => TeamStatistics(restS))
-                .Add("OwnerUpdate", () => AVGAgeByClub(restS))
-                .Add("OwnerReadAll", () => PlayersInAClubOrderedByRating(restS))
+                .Add("AVGAgeByClub", () => AVGAgeByClub(restS))
+                .Add("PlayersInAClubOrderedByRating", () => PlayersInAClubOrderedByRating(restS))
                 .Add("Close", ConsoleMenu.Close);
             menuNonCrud.Show();
         }
