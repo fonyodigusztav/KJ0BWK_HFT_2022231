@@ -39,5 +39,9 @@ namespace KJ0BWK_HFT_2022231.Models
             Players = new HashSet<Player>();
             //Owners = new HashSet<Owner>();
         }
+        public override string ToString()
+        {
+            return $"[{ClubID}] : {Name} (Championship: {Championship} , Owner: {OwnerID} - {Owner.Name})";
+        }
     }
 }

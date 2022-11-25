@@ -15,35 +15,6 @@ namespace KJ0BWK_HFT_2022231.Client
             MenuMain(rest);
 
 
-
-            var ownerSubMenu = new ConsoleMenu(args, level: 1)
-                .Add("List", () => List("Owner"))
-                .Add("Create", () => Create("Owner"))
-                .Add("Delete", () => Delete("Owner"))
-                .Add("Update", () => Update("Owner"))
-                .Add("Exit", ConsoleMenu.Close);
-
-            var clubSubMenu = new ConsoleMenu(args, level: 1)
-                .Add("List", () => List("Club"))
-                .Add("Create", () => Create("Club"))
-                .Add("Delete", () => Delete("Club"))
-                .Add("Update", () => Update("Club"))
-                .Add("Exit", ConsoleMenu.Close);
-
-            var playerSubMenu = new ConsoleMenu(args, level: 1)
-                .Add("List", () => List("Player"))
-                .Add("Create", () => Create("Player"))
-                .Add("Delete", () => Delete("Player"))
-                .Add("Update", () => Update("Player"))
-                .Add("Exit", ConsoleMenu.Close);
-
-            var menu = new ConsoleMenu(args, level: 0)
-                .Add("Players", () => playerSubMenu.Show())
-                .Add("Clubs", () => clubSubMenu.Show())
-                .Add("Owners", () => ownerSubMenu.Show())
-                .Add("Exit", ConsoleMenu.Close);
-
-            menu.Show();
         }
         public static void MenuMain(RestService restS)
         {
@@ -215,42 +186,217 @@ namespace KJ0BWK_HFT_2022231.Client
 
         //CreateEnd
 
+        //ReadStart
 
-
-
-
-
-        static void Create(string entity)
+        private static void ReadPlayer(int id,RestService restS)
         {
-            if (entity == "Player")
+            var player = restS.Get<Player>(id, "player");
+            Console.WriteLine(player.ToString());
+        }
+        private static void ReadPlayer(RestService restS)
+        {
+            Console.WriteLine("Insert the ID of the Player you want to Read!");
+            int id = Convert.ToInt32(Console.ReadLine());
+            ReadPlayer(id, restS);
+            Console.WriteLine("Press any key to exit!");
+            Console.ReadKey();
+        }
+        private static void ReadClub(int id, RestService restS)
+        {
+            var club = restS.Get<Club>(id, "club");
+            Console.WriteLine(club.ToString());
+        }
+        private static void ReadClub(RestService restS)
+        {
+            Console.WriteLine("Insert the ID of the Club you want to Read!");
+            int id = Convert.ToInt32(Console.ReadLine());
+            ReadClub(id, restS);
+            Console.WriteLine("Press any key to exit!");
+            Console.ReadKey();
+        }
+        private static void ReadOwner(int id, RestService restS)
+        {
+            var owner = restS.Get<Owner>(id, "owner");
+            Console.WriteLine(owner.ToString());
+        }
+        private static void ReadOwner(RestService restS)
+        {
+            Console.WriteLine("Insert the ID of the Owner you want to Read!");
+            int id = Convert.ToInt32(Console.ReadLine());
+            ReadOwner(id, restS);
+            Console.WriteLine("Press any key to exit!");
+            Console.ReadKey();
+        }
+        //ReadEnd
+
+        //UpdateStart
+        private static void UpdatePlayer(int ID, string name, int age, string position,
+            double rating, int clubID, RestService restS)
+        {
+            Player newPlayer = new Player
             {
-                Console.Write("Enter Player Name: ");
-                string name = Console.ReadLine();
-                rest.Post(new Player() { Name = name }, "player");
-            }
+                PlayerID = ID,
+                Name = name,
+                Age = age,
+                Position = position,
+                Rating = rating,
+                ClubID = clubID
+            };
+            restS.Put<Player>(newPlayer, "player");
         }
-        static void List(string entity)
+        private static void UpdatePlayer(RestService restS)
         {
-            if (entity == "Player")
+            Console.WriteLine("Insert the ID you want to update!");
+            int ID = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Insert the name of your new Player!");
+            string name = Console.ReadLine();
+            Console.WriteLine("Insert the age of your new Player!");
+            int age = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Insert the position of you new Player!");
+            string position = Console.ReadLine();
+            Console.WriteLine("Insert the rating of you new Player!");
+            double rating = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Insert the clubID of your new Player!");
+            int clubID = Convert.ToInt32(Console.ReadLine());
+            UpdatePlayer(ID, name, age, position, rating, clubID, restS);
+        }
+
+        private static void UpdateClub(int ID, string name, string championship, int ownerID, RestService restS)
+        {
+            Club newClub = new Club
             {
-                List<Player> players = rest.Get<Player>("player");
-                foreach (var item in players)
-                {
-                    Console.WriteLine(item.Name);
-                }
-                Console.ReadLine();
+                ClubID = ID,
+                Name = name,
+                Championship = championship,
+                OwnerID = ownerID
+            };
+
+            restS.Put<Club>(newClub, "club");
+        }
+
+        private static void UpdateClub(RestService restS)
+        {
+            Console.WriteLine("Insert the name of your new Club!");
+            int ID = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Insert the name of your new Club!");
+            string name = Console.ReadLine();
+            Console.WriteLine("Insert the championship of your new Club!");
+            string championship = Console.ReadLine();
+            Console.WriteLine("Insert the ownerID of your new Club!");
+            int ownerID = Convert.ToInt32(Console.ReadLine());
+            UpdateClub(ID, name, championship, ownerID, restS);
+        }
+
+        private static void UpdateOwner(int ID, string name, int age, RestService restS)
+        {
+            Owner newOwner = new Owner
+            {
+                OwnerID = ID,
+                Name = name,
+                Age = age
+            };
+            restS.Put<Owner>(newOwner, "owner");
+        }
+        private static void UpdateOwner(RestService restS)
+        {
+            Console.WriteLine("Insert the ID of your new Owner!");
+            int ID = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Insert the name of your new Owner!");
+            string name = Console.ReadLine();
+            Console.WriteLine("Insert the age of your new Owner!");
+            int age = Convert.ToInt32(Console.ReadLine());
+            UpdateOwner(ID, name, age, restS);
+        }
+
+        //UpdateEnd
+        //ReadAllStart
+        private static void ReadAllPlayer(RestService restS)
+        {
+            var player = restS.Get<Player>("player");
+
+            foreach (var item in player)
+            {
+                Console.WriteLine(item.ToString());
             }
+            Console.WriteLine("Press any key to exit!");
+            Console.ReadKey();
         }
-        static void Update(string entity)
+        private static void ReadAllClub(RestService restS)
         {
-            Console.WriteLine(entity + " update");
-            Console.ReadLine();
+            var club = restS.Get<Club>("club");
+
+            foreach (var item in club)
+            {
+                Console.WriteLine(item.ToString());
+            }
+            Console.WriteLine("Press any key to exit!");
+            Console.ReadKey();
         }
-        static void Delete(string entity)
+        private static void ReadAllOwner(RestService restS)
         {
-            Console.WriteLine(entity + " delete");
-            Console.ReadLine();
+            var owner = restS.Get<Owner>("owner");
+
+            foreach (var item in owner)
+            {
+                Console.WriteLine(item.ToString());
+            }
+            Console.WriteLine("Press any key to exit!");
+            Console.ReadKey();
         }
-        
+        //ReadAllEnd
+
+
+        //NonCrud
+        private static void OwnerOfClubs(RestService restS)
+        {
+            var clubsOwners = restS.Get<KeyValuePair<string, string>>("stat/ownerofclubs");
+            Console.WriteLine("Clubs listed with its Owners next to it:");
+            foreach (var item in clubsOwners)
+            {
+                Console.WriteLine(item.Key, item.Value);
+            }
+            Console.WriteLine("Press any key to exit!");
+            Console.ReadKey();
+        }
+        private static void AVGRatingByClub(RestService restS)
+        {
+            var avgRatings = restS.Get<KeyValuePair<string, double>>("stat/avgratingsbyclub");
+            Console.WriteLine("Clubs listed with the average ratings of its players");
+            foreach (var item in avgRatings)
+            {
+                Console.WriteLine(item.Key, item.Value);
+            }
+            Console.WriteLine("Press any key to exit!");
+            Console.ReadKey();
+        }
+        private static void TeamStatistics(RestService restS)
+        {
+            //var teamstat = restS.Get<Logic.PlayerLogic.TeamInfo>("stat/avgratingsbyclub");
+            Console.WriteLine("hiba");
+        }
+        private static void AVGAgeByClub(RestService restS)
+        {
+            var avgAge = restS.Get<KeyValuePair<string, double>>("stat/avgagesbyclub");
+            Console.WriteLine("Clubs listed with the average ages of its players");
+            foreach (var item in avgAge)
+            {
+                Console.WriteLine(item.Key, item.Value);
+            }
+            Console.WriteLine("Press any key to exit!");
+            Console.ReadKey();
+        }
+        private static void PlayersInAClubOrderedByRating(RestService restS)
+        {
+            var orderedPlayers = restS.Get<Player>("stat/playersinacluborderedbyrating");
+            Console.WriteLine("Players in a club ordered by rating");
+            foreach (var item in orderedPlayers)
+            {
+                Console.WriteLine(item.Name);
+            }
+            Console.WriteLine("Press any key to exit!");
+            Console.ReadKey();
+        }
+
+
     }
 }

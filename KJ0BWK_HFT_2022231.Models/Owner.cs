@@ -34,5 +34,9 @@ namespace KJ0BWK_HFT_2022231.Models
             Age = int.Parse(split[2]);
             Clubs = new HashSet<Club>();
         }
+        public override string ToString()
+        {
+            return $"[{OwnerID}] : {Name} (Age: {Age})";
+        }
     }
 }

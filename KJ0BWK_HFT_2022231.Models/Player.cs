@@ -39,5 +39,9 @@ namespace KJ0BWK_HFT_2022231.Models
             Rating = double.Parse(split[4]);
             ClubID = int.Parse(split[5]);
         }
+        public override string ToString()
+        {
+            return $"[{PlayerID}] - {Name} (Age: {Age}, Position: {Position},Rating: {Rating} Club: {ClubID} - {Club.Name})";
+        }
     }
 }
