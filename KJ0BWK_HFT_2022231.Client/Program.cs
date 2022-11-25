@@ -100,6 +100,7 @@ namespace KJ0BWK_HFT_2022231.Client
             menuNonCrud.Show();
         }
 
+        //Delete start
         private static void DeletePlayer(int id, RestService restS)
         {
             restS.Delete(id, "player");
@@ -139,9 +140,80 @@ namespace KJ0BWK_HFT_2022231.Client
             System.Threading.Thread.Sleep(1000);
         }
 
+        //Delete end
 
+        //Create start
+        private static void CreatePlayer(string name, int age, string position, 
+            double rating, int clubID, RestService restS)
+        {
+            Player newPlayer = new Player
+            {
+                Name = name,
+                Age = age,
+                Position = position,
+                Rating = rating,
+                ClubID = clubID
+            };
+            restS.Post<Player>(newPlayer, "player");
+        }
 
+        private static void CreatePlayer(RestService restS)
+        {
+            Console.WriteLine("Insert the name of your new Player!");
+            string name = Console.ReadLine();
+            Console.WriteLine("Insert the age of your new Player!");
+            int age = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Insert the position of you new Player!");
+            string position = Console.ReadLine();
+            Console.WriteLine("Insert the rating of you new Player!");
+            double rating = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Insert the clubID of your new Player!");
+            int clubID = Convert.ToInt32(Console.ReadLine());
+            CreatePlayer(name, age, position, rating, clubID, restS);
+        }
 
+        private static void CreateClub(string name, string championship, int ownerID,RestService restS)
+        {
+            Club newClub = new Club
+            {
+                Name = name,
+                Championship = championship,
+                OwnerID = ownerID
+            };
+
+            restS.Post<Club>(newClub, "club");
+        }
+
+        private static void CreateClub(RestService restS)
+        {
+            Console.WriteLine("Insert the name of your new Club!");
+            string name = Console.ReadLine();
+            Console.WriteLine("Insert the championship of your new Club!");
+            string championship = Console.ReadLine();
+            Console.WriteLine("Insert the ownerID of your new Club!");
+            int ownerID = Convert.ToInt32(Console.ReadLine());
+            CreateClub(name, championship, ownerID ,restS);
+        }
+
+        private static void CreateOwner(string name, int age, RestService restS)
+        {
+            Owner newOwner = new Owner
+            {
+                Name = name,
+                Age = age
+            };
+            restS.Post<Owner>(newOwner, "owner");
+        }
+        private static void CreateOwner(RestService restS)
+        {
+            Console.WriteLine("Insert the name of your new Owner!");
+            string name = Console.ReadLine();
+            Console.WriteLine("Insert the age of your new Owner!");
+            int age = Convert.ToInt32(Console.ReadLine());
+            CreateOwner(name,age, restS);
+        }
+
+        //CreateEnd
 
 
 
