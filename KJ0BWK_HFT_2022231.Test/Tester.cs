@@ -215,7 +215,6 @@ namespace KJ0BWK_HFT_2022231.Test
                             );
             }
         }
-
         [TestCase(-10, false)]
         [TestCase(100, false)]
         [TestCase(50, true)]
