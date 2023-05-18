@@ -21,9 +21,22 @@ namespace KJ0BWK_WpfClient
         {
             get { return selectedPlayer; }
             set 
-            { 
-                SetProperty(ref selectedPlayer, value);
-                (DeletePlayerCommand as RelayCommand).NotifyCanExecuteChanged();
+            {
+                if (value != null)
+                {
+                    selectedPlayer = new Player()
+                    {
+                        Name = value.Name,
+                        Age = value.Age,
+                        Club = value.Club,
+                        ClubID = value.ClubID,
+                        PlayerID = value.PlayerID,
+                        Position = value.Position,
+                        Rating = value.Rating
+                    };
+                    OnPropertyChanged();
+                    (DeletePlayerCommand as RelayCommand).NotifyCanExecuteChanged();
+                }
             }
         }
 
@@ -42,14 +55,24 @@ namespace KJ0BWK_WpfClient
         {
             if (!IsInDesignMode)
             {
-                Players = new RestCollection<Player>("http://localhost:64355/", "player");
+                Players = new RestCollection<Player>("http://localhost:64355/", "player", "hub");
                 CreatePlayerCommand = new RelayCommand(() =>
                 {
                     Players.Add(new Player()
                     {
-                        Name = "DavidLuiz",
-                        Age = 18
-                    });
+                        Name = SelectedPlayer.Name,
+                        Age = SelectedPlayer.Age,
+                        Club = SelectedPlayer.Club,
+                        Position = SelectedPlayer.Position,
+                        ClubID = SelectedPlayer.ClubID,
+                        PlayerID = Players.Last().PlayerID + 1,
+                        Rating = SelectedPlayer.Rating
+                    }) ;
+                });
+
+                UpdatePlayerCommand = new RelayCommand(() =>
+                {
+                    Players.Update(SelectedPlayer);
                 });
 
                 DeletePlayerCommand = new RelayCommand(() =>
@@ -60,8 +83,9 @@ namespace KJ0BWK_WpfClient
                 {
                     return SelectedPlayer != null;
                 });
+                SelectedPlayer = new Player();
             }
-            
+
         }
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KJ0BWK_WpfClient"
         mc:Ignorable="d"
-        Title="Football editor" Height="450" Width="800">
+        Title="Football editor" Height="800" Width="800">
     <Window.DataContext>
         <local:MainWindowViewModel/>
     </Window.DataContext>
@@ -22,9 +22,17 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <StackPanel Grid.Column="1">
-            <Button Content="Create Actor" Command="{Binding CreatePlayerCommand}" Margin="10" Padding="10"/>
-            <Button Content="Delete Actor" Command="{Binding DeletePlayerCommand}" Margin="10" Padding="10"/>
-            <Button Content="Update Actor" Command="{Binding UpdatePlayerCommand}" Margin="10" Padding="10"/>
+            <Label Content="Name" Background="LightBlue" Padding="10"/>
+            <TextBox Text="{Binding SelectedPlayer.Name}" Padding="10"/>
+            <Label Content="Age" Background="LightBlue" Padding="10"/>
+            <TextBox Text="{Binding SelectedPlayer.Age}" Padding="10"/>
+            <Label Content="Position" Background="LightBlue" Padding="10"/>
+            <TextBox Text="{Binding SelectedPlayer.Position}" Padding="10"/>
+            <Label Content="Rating" Background="LightBlue" Padding="10"/>
+            <TextBox Text="{Binding SelectedPlayer.Rating}" Padding="10"/>
+            <Button Content="Create Player" Command="{Binding CreatePlayerCommand}" Margin="10" Padding="10"/>
+            <Button Content="Delete Player" Command="{Binding DeletePlayerCommand}" Margin="10" Padding="10"/>
+            <Button Content="Update Player" Command="{Binding UpdatePlayerCommand}" Margin="10" Padding="10"/>
         </StackPanel>
     </Grid>
 </Window>

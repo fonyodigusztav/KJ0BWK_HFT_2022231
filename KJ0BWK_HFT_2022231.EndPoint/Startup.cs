@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using KJ0BWK_HFT_2022231.EndPoint.Services;
 using KJ0BWK_HFT_2022231.Logic;
 using KJ0BWK_HFT_2022231.Models;
 using KJ0BWK_HFT_2022231.Repository;
@@ -38,6 +39,8 @@ namespace KJ0BWK_HFT_2022231.EndPoint
             services.AddTransient<IPlayerLogic, PlayerLogic>();
             services.AddTransient<IClubLogic, ClubLogic>();
             services.AddTransient<IOwnerLogic, OwnerLogic>();
+
+            services.AddSignalR();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -77,6 +80,7 @@ namespace KJ0BWK_HFT_2022231.EndPoint
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<SignalRHub>("/hub");
             });
         }
     }
