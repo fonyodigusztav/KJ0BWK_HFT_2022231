@@ -14,12 +14,17 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-        <ListBox ItemsSource="{Binding Players}">
+        <ListBox ItemsSource="{Binding Players}" SelectedItem="{Binding SelectedPlayer}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Label Content="{Binding Name}"/>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        <StackPanel Grid.Column="1">
+            <Button Content="Create Actor" Command="{Binding CreatePlayerCommand}" Margin="10" Padding="10"/>
+            <Button Content="Delete Actor" Command="{Binding DeletePlayerCommand}" Margin="10" Padding="10"/>
+            <Button Content="Update Actor" Command="{Binding UpdatePlayerCommand}" Margin="10" Padding="10"/>
+        </StackPanel>
     </Grid>
 </Window>
