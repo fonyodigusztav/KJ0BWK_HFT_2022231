@@ -3,9 +3,11 @@ using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace KJ0BWK_WpfClient
@@ -28,26 +30,38 @@ namespace KJ0BWK_WpfClient
         public ICommand CreatePlayerCommand { get; set; }
         public ICommand DeletePlayerCommand { get; set; }
         public ICommand UpdatePlayerCommand { get; set; }
+        public static bool IsInDesignMode
+        {
+            get
+            {
+                var prop = DesignerProperties.IsInDesignModeProperty;
+                return (bool)DependencyPropertyDescriptor.FromProperty(prop, typeof(FrameworkElement)).Metadata.DefaultValue;
+            }
+        }
         public MainWindowViewModel()
         {
-            Players = new RestCollection<Player>("http://localhost:64355/", "player");
-            CreatePlayerCommand = new RelayCommand(() =>
+            if (!IsInDesignMode)
             {
-                Players.Add(new Player()
+                Players = new RestCollection<Player>("http://localhost:64355/", "player");
+                CreatePlayerCommand = new RelayCommand(() =>
                 {
-                    Name = "DavidLuiz",
-                    Age = 18
+                    Players.Add(new Player()
+                    {
+                        Name = "DavidLuiz",
+                        Age = 18
+                    });
                 });
-            });
 
-            DeletePlayerCommand = new RelayCommand(() =>
-            {
-                Players.Delete(SelectedPlayer.PlayerID);
-            },
-            () =>
-            {
-                return SelectedPlayer != null;
-            });
+                DeletePlayerCommand = new RelayCommand(() =>
+                {
+                    Players.Delete(SelectedPlayer.PlayerID);
+                },
+                () =>
+                {
+                    return SelectedPlayer != null;
+                });
+            }
+            
         }
     }
 }
