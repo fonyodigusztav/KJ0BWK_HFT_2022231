@@ -73,6 +73,12 @@ namespace KJ0BWK_HFT_2022231.EndPoint
                 await context.Response.WriteAsJsonAsync(response);
             }));
 
+            app.UseCors(x => x
+                .AllowCredentials()
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .WithOrigins("http://localhost:28336"));
+
             app.UseRouting();
 
             app.UseAuthorization();

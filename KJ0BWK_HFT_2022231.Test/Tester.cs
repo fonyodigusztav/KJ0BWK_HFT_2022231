@@ -81,7 +81,7 @@ namespace KJ0BWK_HFT_2022231.Test
                 new Player()
                 {
                     PlayerID = 1,
-                    Name = "Neymar",
+                    PlayerName = "Neymar",
                     Age = 35,
                     Position = "ST",
                     Rating = 20,
@@ -91,7 +91,7 @@ namespace KJ0BWK_HFT_2022231.Test
                 new Player()
                 {
                     PlayerID = 2,
-                    Name = "Messi",
+                    PlayerName = "Messi",
                     Age = 35,
                     Position = "RW",
                     Rating = 20,
@@ -101,7 +101,7 @@ namespace KJ0BWK_HFT_2022231.Test
                 new Player()
                 {
                     PlayerID = 3,
-                    Name = "Lewandowski",
+                    PlayerName = "Lewandowski",
                     Age = 40,
                     Position = "ST",
                     Rating = 10,
@@ -111,7 +111,7 @@ namespace KJ0BWK_HFT_2022231.Test
                 new Player()
                 {
                     PlayerID = 4,
-                    Name = "Gavi",
+                    PlayerName = "Gavi",
                     Age = 20,
                     Position = "CDM",
                     Rating = 20,
@@ -144,7 +144,7 @@ namespace KJ0BWK_HFT_2022231.Test
                         playerL.Create(
                             new Player()
                             {
-                                Name = "Name",
+                                PlayerName = "Name",
                                 Age = age,
                                 PlayerID = 1,
                                 Position = "CB",
@@ -162,7 +162,7 @@ namespace KJ0BWK_HFT_2022231.Test
                         playerL.Create(
                             new Player()
                             {
-                                Name = "Name",
+                                PlayerName = "Name",
                                 Age = age,
                                 PlayerID = 1,
                                 Position = "CB",
@@ -186,7 +186,7 @@ namespace KJ0BWK_HFT_2022231.Test
                         playerL.Create(
                             new Player()
                             {
-                                Name = "Name",
+                                PlayerName = "Name",
                                 Age = 18,
                                 PlayerID = 1,
                                 Position = position,
@@ -204,7 +204,7 @@ namespace KJ0BWK_HFT_2022231.Test
                         playerL.Create(
                             new Player()
                             {
-                                Name = "Name",
+                                PlayerName = "Name",
                                 Age = 18,
                                 PlayerID = 1,
                                 Position = position,
@@ -228,7 +228,7 @@ namespace KJ0BWK_HFT_2022231.Test
                         playerL.Create(
                             new Player()
                             {
-                                Name = "Name",
+                                PlayerName = "Name",
                                 Age = 18,
                                 PlayerID = 1,
                                 Position = "ST",
@@ -246,7 +246,7 @@ namespace KJ0BWK_HFT_2022231.Test
                         playerL.Create(
                             new Player()
                             {
-                                Name = "Name",
+                                PlayerName = "Name",
                                 Age = 18,
                                 PlayerID = 1,
                                 Position = "ST",
@@ -360,8 +360,8 @@ namespace KJ0BWK_HFT_2022231.Test
         public void PlayersInAClubOrderedByRatingTest()
         {
             var result = playerL.PlayersInAClubOrderedByRating(2);
-            var l = playerL.ReadAll().FirstOrDefault(x => x.Name == "Lewandowski");
-            var g = playerL.ReadAll().FirstOrDefault(x => x.Name == "Gavi");
+            var l = playerL.ReadAll().FirstOrDefault(x => x.PlayerName == "Lewandowski");
+            var g = playerL.ReadAll().FirstOrDefault(x => x.PlayerName == "Gavi");
             var expected = new List<Player>();
             expected.Add(g);
             expected.Add(l);
@@ -434,7 +434,7 @@ namespace KJ0BWK_HFT_2022231.Test
         {
             Player result = playerL.BestPlayerInAClub("Barcelona");
             Player expected = playerL.ReadAll()
-                .FirstOrDefault(x => x.Name == "Gavi");
+                .FirstOrDefault(x => x.PlayerName == "Gavi");
             Assert.That(result, Is.EqualTo(expected));
         }
 

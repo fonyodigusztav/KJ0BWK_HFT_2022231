@@ -26,7 +26,7 @@ namespace KJ0BWK_WpfClient
                 {
                     selectedPlayer = new Player()
                     {
-                        Name = value.Name,
+                        PlayerName = value.PlayerName,
                         Age = value.Age,
                         Club = value.Club,
                         ClubID = value.ClubID,
@@ -60,7 +60,7 @@ namespace KJ0BWK_WpfClient
                 {
                     Players.Add(new Player()
                     {
-                        Name = SelectedPlayer.Name,
+                        PlayerName = SelectedPlayer.PlayerName,
                         Age = SelectedPlayer.Age,
                         Club = SelectedPlayer.Club,
                         Position = SelectedPlayer.Position,

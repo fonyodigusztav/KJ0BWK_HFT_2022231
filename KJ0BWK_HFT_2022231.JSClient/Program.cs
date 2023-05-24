@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace KJ0BWK_JSClient
+namespace KJ0BWK_HFT_2022231.JSClient
 {
     public class Program
     {

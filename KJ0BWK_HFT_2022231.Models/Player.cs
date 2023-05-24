@@ -13,7 +13,7 @@ namespace KJ0BWK_HFT_2022231.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int PlayerID { get; set; }
-        public string Name { get; set; }
+        public string PlayerName { get; set; }
         
         [Range(0, 150)]
         public int Age { get; set; }
@@ -33,7 +33,7 @@ namespace KJ0BWK_HFT_2022231.Models
         {
             string[] split = path.Split('#');
             PlayerID = int.Parse(split[0]);
-            Name = split[1];
+            PlayerName = split[1];
             Age = int.Parse(split[2]);
             Position = split[3];
             Rating = double.Parse(split[4]);
@@ -41,7 +41,7 @@ namespace KJ0BWK_HFT_2022231.Models
         }
         public override string ToString()
         {
-            return $"[{PlayerID}] - {Name} (Age: {Age}, Position: {Position},Rating: {Rating} Club: {ClubID} - {Club.Name})";
+            return $"[{PlayerID}] - {PlayerName} (Age: {Age}, Position: {Position},Rating: {Rating} Club: {ClubID} - {Club.Name})";
         }
     }
 }

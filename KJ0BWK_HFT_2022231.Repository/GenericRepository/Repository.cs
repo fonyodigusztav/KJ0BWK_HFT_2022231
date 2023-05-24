@@ -19,6 +19,8 @@ namespace KJ0BWK_HFT_2022231.Repository
             ctx.Set<T>().Add(item);
             ctx.SaveChanges();
         }
+
+
         public IQueryable<T> ReadAll()
         {
             return ctx.Set<T>();

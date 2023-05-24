@@ -119,7 +119,7 @@ namespace KJ0BWK_HFT_2022231.Client
         {
             Player newPlayer = new Player
             {
-                Name = name,
+                PlayerName = name,
                 Age = age,
                 Position = position,
                 Rating = rating,
@@ -236,7 +236,7 @@ namespace KJ0BWK_HFT_2022231.Client
             Player newPlayer = new Player
             {
                 PlayerID = ID,
-                Name = name,
+                PlayerName = name,
                 Age = age,
                 Position = position,
                 Rating = rating,

@@ -17,13 +17,13 @@
         <ListBox ItemsSource="{Binding Players}" SelectedItem="{Binding SelectedPlayer}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Label Content="{Binding Name}"/>
+                    <Label Content="{Binding PlayerName}"/>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
         <StackPanel Grid.Column="1">
             <Label Content="Name" Background="LightBlue" Padding="10"/>
-            <TextBox Text="{Binding SelectedPlayer.Name}" Padding="10"/>
+            <TextBox Text="{Binding SelectedPlayer.PlayerName}" Padding="10"/>
             <Label Content="Age" Background="LightBlue" Padding="10"/>
             <TextBox Text="{Binding SelectedPlayer.Age}" Padding="10"/>
             <Label Content="Position" Background="LightBlue" Padding="10"/>

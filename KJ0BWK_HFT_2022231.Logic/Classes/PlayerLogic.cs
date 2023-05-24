@@ -18,18 +18,18 @@ namespace KJ0BWK_HFT_2022231.Logic
 
         public void Create(Player item)
         {
-            if (item.Age <= 0)
-            {
-                throw new ArgumentException($"{item.Name} Player's age is invalid");
-            }
-            if (item.Position.Length > 3)
-            {
-                throw new ArgumentException($"{item.Name} Player's Position must be specified with maximum of three letters");
-            }
-            if (item.Rating < 1 || item.Rating > 99)
-            {
-                throw new ArgumentException($"{item.Name} Player's Rating must be between 1 and 99");
-            }
+            //if (item.Age <= 0)
+            //{
+            //    throw new ArgumentException($"{item.Name} Player's age is invalid");
+            //}
+            //if (item.Position.Length > 3)
+            //{
+            //    throw new ArgumentException($"{item.Name} Player's Position must be specified with maximum of three letters");
+            //}
+            //if (item.Rating < 1 || item.Rating > 99)
+            //{
+            //    throw new ArgumentException($"{item.Name} Player's Rating must be between 1 and 99");
+            //}
             this.repo.Create(item);
         }
 

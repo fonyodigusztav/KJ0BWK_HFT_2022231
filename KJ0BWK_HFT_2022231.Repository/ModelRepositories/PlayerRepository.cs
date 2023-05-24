@@ -25,7 +25,7 @@ namespace KJ0BWK_HFT_2022231.Repository
             {
                 throw new InvalidOperationException("player doesn't exists in the current context");
             }
-            oldPlayer.Name = item.Name;
+            oldPlayer.PlayerName = item.PlayerName;
             oldPlayer.PlayerID = item.PlayerID;
             oldPlayer.Position = item.Position;
             oldPlayer.ClubID = item.ClubID;
